@@ -5,18 +5,23 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Fri Jan  8 21:02:32 2016 
+** Last update Fri Jan  8 22:24:22 2016 
 */
 
 #ifndef MAIN_H_
 # define MAIN_H
 
 # include <stdlib.h>
+# include <string.h>
 # include <stdio.h>
+# include <stdarg.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/sendfile.h>
 # include <fcntl.h>
+
+int			my_untar(int fd);
 
 typedef struct		s_header
 {

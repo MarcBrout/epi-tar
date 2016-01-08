@@ -5,10 +5,11 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Fri Jan  8 20:22:35 2016 
-## Last update Fri Jan  8 21:00:08 2016 
+## Last update Fri Jan  8 21:35:46 2016 
 ##
 
 SRCS	=	src/main.c			\
+		src/ope.c			\
 
 OBJS	=	${SRCS:.c=.o}
 
