@@ -5,7 +5,7 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Fri Jan  8 20:22:35 2016 
-## Last update Fri Jan  8 20:22:37 2016 
+## Last update Fri Jan  8 21:00:08 2016 
 ##
 
 SRCS	=	src/main.c			\
@@ -16,7 +16,7 @@ CFLAGS	=	-W -Wall -Wextra -Werror -ansi -pedantic -g
 
 CFLAGS	+=	-Iinclude
 
-NAME	=	my_archive
+NAME	=	my_unarchive
 
 ${NAME}:	${OBJS}
 		gcc -o ${NAME} ${OBJS} ${CFLAGS}
