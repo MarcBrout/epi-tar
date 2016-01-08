@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Fri Jan  8 21:02:32 2016 
+** Last update Fri Jan  8 23:23:57 2016 marc brout
 */
 
 #ifndef MAIN_H_
@@ -13,6 +13,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
