@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Fri Jan  8 22:24:22 2016 
+** Last update Fri Jan  8 23:54:42 2016 
 */
 
 #ifndef MAIN_H_
@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/sendfile.h>
+# include <math.h>
 # include <fcntl.h>
 
 int			my_untar(int fd);
