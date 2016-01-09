@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sat Jan  9 05:27:12 2016 marc brout
+** Last update Sat Jan  9 06:20:07 2016 
 */
 
 #include "main.h"
@@ -56,4 +56,24 @@ void		write_tar(t_header *header, int src, int dest)
 	  write(dest, buff, 512);
 	}
     }
+}
+
+void		calc_chksum(t_header *header)
+{
+  int		i;
+  int		a;
+  int		d;
+  char		c;
+
+  i = 0;
+  a = 0;
+  d = 0;
+  while (i < 512)
+    {
+      c = header++;
+      a += c % 255;
+      d += c * (i + 1) % 255;
+      i++;
+    }
+  sprintf(header->chksum, "%X%X", a, d);
 }
