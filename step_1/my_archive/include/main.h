@@ -1,15 +1,15 @@
 /*
-** main.h for main header file in /home/troncy_l/prog/PSU_2015_minishell1/include
+** main.h for main
 ** 
 ** Made by 
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Fri Jan  8 23:23:57 2016 marc brout
+** Last update Sat Jan  9 04:10:05 2016 marc brout
 */
 
 #ifndef MAIN_H_
-# define MAIN_H
+# define MAIN_H_
 
 # include <stdlib.h>
 # include <stdio.h>
