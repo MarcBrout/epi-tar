@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:13:56 2016 
-** Last update Sat Jan  9 02:59:48 2016 
+** Last update Sat Jan  9 08:08:26 2016 
 */
 
 #include "main.h"
@@ -21,12 +21,13 @@ int		my_untar(int fd)
     {
       /*if (header.name == NULL || header.name[0] == '\0')
 	return (0);*/
-      if (len != 512)
+      if (len != 512 && (header.name == NULL || header.name[0] == '\0'))
 	return (0);
       printf("Name:%s\n", header.name);
       if (header.name[strlen(header.name) - 1] == '/')
 	{
-	  mkdir(header.name, S_IRWXU | S_IRWXG | S_IRWXO);
+	  if (mkdir(header.name, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+	    printf("ERRRROOOOOOOOR\n");
 	}
       else
 	{
