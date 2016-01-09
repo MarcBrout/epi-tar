@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:17:18 2016 marc brout
-** Last update Sat Jan  9 05:25:24 2016 marc brout
+** Last update Sat Jan  9 06:24:17 2016 marc brout
 */
 
 #ifndef MY_ARCHIVE_H_
@@ -23,6 +23,7 @@ typedef struct		s_arg
   t_file		*files;
 }			t_arg;
 
+void calc_chksum(t_header *);
 char launch_my_archive(char **);
 char add_file_to_list(t_arg *, char *);
 char create_all_headers(t_arg *);

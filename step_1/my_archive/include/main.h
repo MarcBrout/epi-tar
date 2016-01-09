@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sat Jan  9 04:42:33 2016 marc brout
+** Last update Sat Jan  9 08:38:31 2016 marc brout
 */
 
 #ifndef MAIN_H_
@@ -29,9 +29,10 @@ typedef struct		s_header
   char			uid[8];
   char			gid[8];
   char			size[12];
-  char			mdate[8];
-  char			chksum[8];
-  char			type;
+  char			mdate[12];
+  char			chksum[7];
+  char			space[1];
+  char			type[1];
   char			link[100];
   char			magic[6];
   char			version[2];
@@ -40,7 +41,7 @@ typedef struct		s_header
   char			devmajor[8];
   char			devminor[8];
   char			prefix[155];
-  char			end[12];
+  char			end[12]
 }			t_header;
 
 # include "my_archive.h"

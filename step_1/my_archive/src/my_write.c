@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sat Jan  9 06:20:07 2016 
+** Last update Sat Jan  9 08:40:04 2016 marc brout
 */
 
 #include "main.h"
@@ -16,7 +16,6 @@ void		archive_files(t_arg *arg, char *archive)
   int		dest;
   t_file	*tmp;
 
-  printf("lol\n");
   if ((dest = creat(archive, O_WRONLY)) != -1)
     {
       tmp = arg->files;
@@ -35,7 +34,7 @@ void		archive_files(t_arg *arg, char *archive)
 
 void		write_tar(t_header *header, int src, int dest)
 {
-  char		buff[513];
+  char		buff[512];
   char		zero[512];
   int		len;
 
@@ -60,6 +59,7 @@ void		write_tar(t_header *header, int src, int dest)
 
 void		calc_chksum(t_header *header)
 {
+  char		*str;
   int		i;
   int		a;
   int		d;
@@ -68,12 +68,14 @@ void		calc_chksum(t_header *header)
   i = 0;
   a = 0;
   d = 0;
-  while (i < 512)
+  str = (char *)header;
+  while (i < 500)
     {
-      c = header++;
+      c = *str;
       a += c % 255;
-      d += c * (i + 1) % 255;
+      d += (c * (i + 1)) % 255;
       i++;
+      str++;
     }
-  sprintf(header->chksum, "%X%X", a, d);
+  sprintf(header->chksum, "%06o", d - a);
 }
