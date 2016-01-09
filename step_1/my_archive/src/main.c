@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:16:14 2016 marc brout
-** Last update Sat Jan  9 08:33:42 2016 marc brout
+** Last update Sat Jan  9 19:16:27 2016 marc brout
 */
 
 #include "main.h"
@@ -40,6 +40,7 @@ char		create_header(t_file *file)
       sprintf(file->header.uid, "%07lo", (long)stats.st_uid);
       sprintf(file->header.gid, "%07lo",  (long)stats.st_gid);
       sprintf(file->header.mode, "%07lo", (long)stats.st_mode);
+      file->header.mode[1] = '0';
       sprintf(file->header.size, "%011lo", (long)stats.st_size);
       sprintf(file->header.mdate, "%011lo",  (long)stats.st_mtime);
       if ((file->header.type[0] = file_type(&stats)) == '2')

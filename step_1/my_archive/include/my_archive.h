@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:17:18 2016 marc brout
-** Last update Sat Jan  9 06:24:17 2016 marc brout
+** Last update Sat Jan  9 19:01:18 2016 marc brout
 */
 
 #ifndef MY_ARCHIVE_H_
@@ -30,6 +30,6 @@ char create_all_headers(t_arg *);
 char create_header(t_file *);
 char file_type(struct stat *);
 void archive_files(t_arg *, char *);
-void write_tar(t_header *, int, int);
+int write_tar(t_header *, int, int);
 
 #endif /* !MY_ARCHIVE_H_ */
