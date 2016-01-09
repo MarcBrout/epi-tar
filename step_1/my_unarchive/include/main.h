@@ -5,11 +5,11 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Fri Jan  8 23:54:42 2016 
+** Last update Sat Jan  9 04:10:30 2016 
 */
 
 #ifndef MAIN_H_
-# define MAIN_H
+# define MAIN_H_
 
 # include <stdlib.h>
 # include <string.h>
