@@ -5,67 +5,75 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sat Jan  9 19:22:29 2016 marc brout
+** Last update Sat Jan  9 21:04:42 2016 marc brout
 */
 
 #include "main.h"
 
-void		archive_files(t_arg *arg, char *archive)
+char		pad_archive(t_arg *arg, int fd)
+{
+  arg->pad = arg->pad % 20;
+  while (arg->pad++ < 20)
+    if (write(fd, arg->zero, 512) < 0)
+      {
+	close(fd);
+	return (1);
+      }
+  close(fd);
+  return (0);
+}
+
+char		archive_files(t_arg *arg, char *archive)
 {
   int		src;
   int		dest;
-  int		pad;
-  char		zero[512];
   t_file	*tmp;
 
-  memset(zero, 0, 512);
-  pad = 0;
   if ((dest = creat(archive, O_WRONLY)) != -1)
     {
+      arg->pad = 1;
+      memset(arg->zero, 0, 512);
       tmp = arg->files;
-      while (tmp->next != NULL)
-	{
-	  tmp = tmp->next;
-	  if ((src = open(tmp->path, O_RDONLY)) != -1)
-	    {
-	      pad += write_tar(&tmp->header, src, dest);
-	      close(src);
-	    }
-	}
-      pad = pad % 20;
-      while (pad++ < 20)
-	write(dest, zero, 512);
-      close(dest);
+      while ((tmp = tmp->next) != NULL)
+	if ((src = open(tmp->path, O_RDONLY)) != -1)
+	  {
+	    if (write_tar(arg, &tmp->header, src, dest) < 0)
+	      {
+		close(src);
+		close(dest);
+		return (1);
+	      }
+	    close(src);
+	  }
+      if (pad_archive(arg, dest))
+	return (1);
     }
+  return (0);
 }
 
-int		write_tar(t_header *header, int src, int dest)
+char		write_tar(t_arg *arg, t_header *header, int src, int dest)
 {
   char		buff[512];
-  char		zero[512];
   int		len;
-  int		pad;
 
   len = 0;
-  while (len < 512)
-    zero[len++] = 0;
   write(dest, header, 512);
   buff[512] = '\0';
-  pad = 1;
   while ((len = read(src, buff, 512)) != 0)
     {
       if (len != 512)
 	{
-	  write(dest, buff, len);
-	  write(dest, zero, 512 - len);
+	  if (write(dest, buff, len) < 0 ||
+	      write(dest, arg->zero, 512 - len) < 0)
+	    return (1);
 	}
       else
 	{
 	  write(dest, buff, 512);
 	}
-      pad += 1;
+      arg->pad += 1;
     }
-  return (pad);
+  return (0);
 }
 
 void		calc_chksum(t_header *header)
