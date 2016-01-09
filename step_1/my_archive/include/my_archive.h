@@ -5,17 +5,16 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:17:18 2016 marc brout
-** Last update Fri Jan  8 23:44:19 2016 marc brout
+** Last update Sat Jan  9 05:25:24 2016 marc brout
 */
 
 #ifndef MY_ARCHIVE_H_
 # define MY_ARCHIVE_H_
 
-# include "main.h"
-
 typedef struct		s_file
 {
   char			*path;
+  t_header		header;
   struct s_file		*next;
 }			t_file;
 
@@ -24,6 +23,12 @@ typedef struct		s_arg
   t_file		*files;
 }			t_arg;
 
-char *strdup(const char *);
+char launch_my_archive(char **);
+char add_file_to_list(t_arg *, char *);
+char create_all_headers(t_arg *);
+char create_header(t_file *);
+char file_type(struct stat *);
+void archive_files(t_arg *, char *);
+void write_tar(t_header *, int, int);
 
 #endif /* !MY_ARCHIVE_H_ */

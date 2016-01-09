@@ -1,15 +1,16 @@
 /*
-** main.h for main
+** main.h for main header
 ** 
 ** Made by 
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sat Jan  9 04:10:05 2016 marc brout
+** Last update Sat Jan  9 04:42:33 2016 marc brout
 */
 
 #ifndef MAIN_H_
 # define MAIN_H_
+# define _BSD_SOURCE
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -18,6 +19,8 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <pwd.h>
+# include <grp.h>
 
 typedef struct		s_header
 {
@@ -39,5 +42,7 @@ typedef struct		s_header
   char			prefix[155];
   char			end[12];
 }			t_header;
+
+# include "my_archive.h"
 
 #endif /* !MAIN_H_ */

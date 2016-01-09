@@ -5,16 +5,20 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Fri Jan  8 20:22:35 2016 
-## Last update Sat Jan  9 04:26:48 2016 
+## Last update Sat Jan  9 06:02:41 2016 
 ##
 
-SRCS	=	src/main.c
+SRCS	=	src/main.c \
+		src/my_write.c
 
 OBJS	=	${SRCS:.c=.o}
 
-CFLAGS	=	-W -Wall -Wextra -ansi -pedantic -g -Iinclude
+CFLAGS	=	-I./include -W -Wall -Wextra -ansi -pedantic -g
 
 NAME	=	my_archive
+
+.c.o:
+	gcc -c $< -o $@ ${CFLAGS}
 
 ${NAME}:	${OBJS}
 		gcc -o ${NAME} ${OBJS}
