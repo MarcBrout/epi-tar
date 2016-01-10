@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 06:41:42 2016 marc brout
-** Last update Sun Jan 10 08:18:18 2016 marc brout
+** Last update Sun Jan 10 09:20:55 2016 marc brout
 */
 
 #include "main.h"
@@ -63,7 +63,7 @@ char		construct_list(t_arg *arg)
   return (0);
 }
 
-char		launch_my_archive(char **av)
+char		launch_my_archive(char **av, int *opt)
 {
   t_arg		targ;
   t_file	file;
@@ -72,8 +72,9 @@ char		launch_my_archive(char **av)
   file.path = "root";
   file.next = NULL;
   targ.files = &file;
-  i = 1;
-  while (av[++i])
+  targ.opt = opt;
+  i = 0;
+  while (av[++i] != NULL)
     if (!access(av[i], F_OK))
       {
 	if (!access(av[i], R_OK))
@@ -86,8 +87,9 @@ char		launch_my_archive(char **av)
       }
     else
       fprintf(stderr, "Fichier inexistant : %s\n", av[i]);
-  if (file.next == NULL || set_padres(targ.files) || construct_list(&targ) ||
-      create_all_headers(&targ) || archive_files(&targ, av[1]))
+  if (file.next == NULL || set_padres(targ.files) || construct_list(&targ)
+      || create_all_headers(&targ) || archive_files(&targ, av[0]))
     return (1);
   return (0);
 }
+    
