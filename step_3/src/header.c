@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sat Jan  9 20:33:36 2016 marc brout
-** Last update Sun Jan 10 01:55:43 2016 marc brout
+** Last update Sun Jan 10 10:02:19 2016 marc brout
 */
 
 #include "main.h"
@@ -62,4 +62,20 @@ char		create_all_headers(t_arg *arg)
 	return (1);
     }
   return (0);
+}
+
+void		free_list(t_file *files)
+{
+  t_file	*tmp;
+  t_file	*tmp2;
+
+  tmp = files->next;
+  while (tmp != NULL)
+    {
+      tmp2 = tmp->next;
+      free(tmp->path);
+      free(tmp->archpath);
+      free(tmp);
+      tmp = tmp2;
+    }
 }

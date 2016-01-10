@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 06:41:42 2016 marc brout
-** Last update Sun Jan 10 09:45:16 2016 marc brout
+** Last update Sun Jan 10 09:57:13 2016 marc brout
 */
 
 #include "main.h"
@@ -85,6 +85,7 @@ char		launch_my_archive(char **av, int *opt)
   if (file.next == NULL || set_padres(targ.files) || construct_list(&targ)
       || create_all_headers(&targ) || archive_files(&targ, av[0]))
     return (1);
+  free_list(targ.files);
   return (0);
 }
     

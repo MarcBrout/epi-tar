@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sun Jan 10 08:08:28 2016 
-** Last update Sun Jan 10 09:13:18 2016 marc brout
+** Last update Sun Jan 10 10:06:12 2016 marc brout
 */
 
 #include "main.h"
@@ -13,7 +13,7 @@
 int		my_start(int args[], char **tarball)
 {
   int		fd;
-  
+
   if (args[0] == 1)
     {
       fd = open(tarball[0], O_RDONLY);

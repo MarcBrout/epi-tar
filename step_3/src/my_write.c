@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sun Jan 10 09:49:02 2016 marc brout
+** Last update Sun Jan 10 10:07:57 2016 marc brout
 */
 
 #include "main.h"
@@ -46,7 +46,7 @@ char		archive_files(t_arg *arg, char *archive)
     if ((src = open(tmp->path, O_RDONLY)) != -1)
       {
 	if (write_tar(arg, &tmp->header, src, dest) < 0)
-	  return(my_closefd(src, dest));
+	  return (my_closefd(src, dest));
 	close(src);
       }
   if (pad_archive(arg, dest))

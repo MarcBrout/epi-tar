@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sun Jan 10 01:42:48 2016 
-** Last update Sun Jan 10 08:06:25 2016 
+** Last update Sun Jan 10 10:07:05 2016 marc brout
 */
 
 #include "main.h"
@@ -49,7 +49,7 @@ int		my_parser(int argc,
   sprintf(flags, "xcvftp");
   while ((c = getopt(argc, argv, "xcvf:tp")) != -1)
     {
-      i = 0;
+      i = -1;
       if (c == 'f')
 	{
 	  if (optarg != NULL)
@@ -58,12 +58,9 @@ int		my_parser(int argc,
 	    file[0] = '\0';
 	  *index = optind - 1;
 	}
-      while (i < 6)
-	{
-	  if (c == flags[i])
-	    args[i] = 1;
-	  i++;
-	}
+      while (++i < 6)
+	if (c == flags[i])
+	  args[i] = 1;
     }
   return (check_conflict(args, file));
 }
