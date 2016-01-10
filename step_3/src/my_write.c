@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sun Jan 10 09:39:38 2016 marc brout
+** Last update Sun Jan 10 09:49:02 2016 marc brout
 */
 
 #include "main.h"
@@ -37,7 +37,7 @@ char		archive_files(t_arg *arg, char *archive)
   t_file	*tmp;
 
   if ((dest = open(archive, O_WRONLY | O_CREAT,
-		   S_IRWXU | S_IRGRP | S_IROTH)) < 0)
+		   S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) < 0)
     return (1);
   arg->pad = 1;
   memset(arg->zero, 0, 512);
