@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 06:41:42 2016 marc brout
-** Last update Sun Jan 10 06:42:35 2016 marc brout
+** Last update Sun Jan 10 08:18:18 2016 marc brout
 */
 
 #include "main.h"
@@ -74,12 +74,19 @@ char		launch_my_archive(char **av)
   targ.files = &file;
   i = 1;
   while (av[++i])
-    if (!access(av[i], F_OK) && !access(av[i], R_OK))
-      if (add_file_to_list(&targ, av[i], av[i]))
-	return (1);
-  if (file.next == NULL)
-    return (1);
-  if (set_padres(targ.files) || construct_list(&targ) ||
+    if (!access(av[i], F_OK))
+      {
+	if (!access(av[i], R_OK))
+	  {
+	    if (add_file_to_list(&targ, av[i], av[i]))
+	      return (1);
+	  }
+	else
+	  fprintf(stderr, "Droit d'accès insuffisant à : %s\n", av[i]);
+      }
+    else
+      fprintf(stderr, "Fichier inexistant : %s\n", av[i]);
+  if (file.next == NULL || set_padres(targ.files) || construct_list(&targ) ||
       create_all_headers(&targ) || archive_files(&targ, av[1]))
     return (1);
   return (0);
