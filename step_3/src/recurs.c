@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 03:01:35 2016 marc brout
-** Last update Sun Jan 10 10:03:43 2016 marc brout
+** Last update Sun Jan 10 11:51:23 2016 marc brout
 */
 
 #include "main.h"
@@ -34,7 +34,7 @@ char		concate_strs(t_arg *arg, struct dirent *file, t_file *par)
   return (0);
 }
 
-char		folder_list(t_arg *arg, t_file *par)
+char		folder_list(t_arg *arg, t_file *par, char *str)
 {
   DIR		*fold;
   struct dirent *file;
@@ -46,7 +46,8 @@ char		folder_list(t_arg *arg, t_file *par)
   par->archpath = strcat(par->archpath, "/");
   while ((file = readdir(fold)) != NULL)
     {
-      if (strcmp(file->d_name, ".") && strcmp(file->d_name, ".."))
+      if (strcmp(file->d_name, ".") && strcmp(file->d_name, "..")
+	  && strcmp(file->d_name, str))
 	if (concate_strs(arg, file, par))
 	  return (1);
     }
