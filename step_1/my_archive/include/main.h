@@ -5,13 +5,14 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sat Jan  9 20:08:01 2016 marc brout
+** Last update Sun Jan 10 01:17:39 2016 marc brout
 */
 
 #ifndef MAIN_H_
 # define MAIN_H_
 # define _BSD_SOURCE
 
+# include <dirent.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>

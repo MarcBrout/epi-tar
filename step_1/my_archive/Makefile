@@ -5,16 +5,17 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Fri Jan  8 20:22:35 2016 
-## Last update Sat Jan  9 20:35:13 2016 marc brout
+## Last update Sun Jan 10 05:06:22 2016 marc brout
 ##
 
 SRCS	=	src/main.c \
 		src/my_write.c \
-		src/header.c
+		src/header.c \
+		src/recurs.c
 
 OBJS	=	${SRCS:.c=.o}
 
-CFLAGS	=	-I./include -W -Wall -Wextra -ansi -pedantic -g
+CFLAGS	=	-I./include -W -Wall -Wextra -Werror -ansi -pedantic -g
 
 NAME	=	my_archive
 

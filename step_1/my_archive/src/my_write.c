@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sat Jan  9 21:04:42 2016 marc brout
+** Last update Sun Jan 10 05:21:05 2016 marc brout
 */
 
 #include "main.h"
@@ -29,7 +29,8 @@ char		archive_files(t_arg *arg, char *archive)
   int		dest;
   t_file	*tmp;
 
-  if ((dest = creat(archive, O_WRONLY)) != -1)
+  if ((dest = open(archive, O_WRONLY | O_CREAT,
+		   S_IRWXU | S_IRGRP | S_IROTH)) > -1)
     {
       arg->pad = 1;
       memset(arg->zero, 0, 512);
@@ -59,7 +60,7 @@ char		write_tar(t_arg *arg, t_header *header, int src, int dest)
   len = 0;
   write(dest, header, 512);
   buff[512] = '\0';
-  while ((len = read(src, buff, 512)) != 0)
+  while (header->type[0] == '0' && (len = read(src, buff, 512)) != 0)
     {
       if (len != 512)
 	{

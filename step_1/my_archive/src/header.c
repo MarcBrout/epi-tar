@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sat Jan  9 20:33:36 2016 marc brout
-** Last update Sat Jan  9 20:35:37 2016 marc brout
+** Last update Sun Jan 10 01:55:43 2016 marc brout
 */
 
 #include "main.h"
@@ -19,7 +19,7 @@ char		header_start(t_file * file, struct stat *stats)
       sprintf(file->header.mdate, "%011lo",  (long)stats->st_mtime) < 0 ||
       strncpy(file->header.magic, "ustar", 6) == NULL ||
       strncpy(file->header.version, "00", 2) == NULL ||
-      strncpy(file->header.name, file->path, 100) == NULL ||
+      strncpy(file->header.name, file->archpath, 100) == NULL ||
       sprintf(file->header.devmajor, "%07u", major(stats->st_rdev)) < 0 ||
       sprintf(file->header.devminor, "%07u", minor(stats->st_rdev)) < 0)
     return (1);
