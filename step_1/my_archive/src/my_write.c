@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sun Jan 10 06:35:07 2016 marc brout
+** Last update Sun Jan 10 06:35:34 2016 marc brout
 */
 
 #include "main.h"
@@ -44,7 +44,7 @@ char		archive_files(t_arg *arg, char *archive)
 	    close(dest);
 	    return (1);
 	  }
-	    close(src);
+	close(src);
       }
   if (pad_archive(arg, dest))
     return (1);
