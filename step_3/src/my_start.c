@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sun Jan 10 08:08:28 2016 
-** Last update Sun Jan 10 08:24:28 2016 
+** Last update Sun Jan 10 08:31:00 2016 
 */
 
 #include "main.h"
@@ -21,6 +21,6 @@ int		my_start(int args[], char **tarball)
 	return (my_untar(fd));
     }
   else if (args[1] == 1)
-    return ((int)launch_my_archive(tarball));
+    printf("Ret:%d\n", launch_my_archive(tarball));
   return (0);
 }
