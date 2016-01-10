@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sat Jan  9 04:10:30 2016 
+** Last update Sat Jan  9 21:43:08 2016 
 */
 
 #ifndef MAIN_H_
@@ -31,9 +31,10 @@ typedef struct		s_header
   char			uid[8];
   char			gid[8];
   char			size[12];
-  char			mdate[8];
-  char			chksum[8];
-  char			type;
+  char			mdate[12];
+  char			chksum[7];
+  char			space[1];
+  char			type[1];
   char			link[100];
   char			magic[6];
   char			version[2];
