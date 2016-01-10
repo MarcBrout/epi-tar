@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sun Jan 10 02:56:45 2016 marc brout
+** Last update Sun Jan 10 05:21:05 2016 marc brout
 */
 
 #include "main.h"
@@ -29,8 +29,8 @@ char		archive_files(t_arg *arg, char *archive)
   int		dest;
   t_file	*tmp;
 
-  if ((dest = open(archive, O_WRONLY | O_CREAT,S_IRWXG | S_IRGRP | S_IROTH)) 
-      > -1)
+  if ((dest = open(archive, O_WRONLY | O_CREAT,
+		   S_IRWXU | S_IRGRP | S_IROTH)) > -1)
     {
       arg->pad = 1;
       memset(arg->zero, 0, 512);

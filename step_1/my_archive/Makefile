@@ -5,13 +5,13 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Fri Jan  8 20:22:35 2016 
-## Last update Sun Jan 10 03:20:13 2016 marc brout
+## Last update Sun Jan 10 05:06:22 2016 marc brout
 ##
 
 SRCS	=	src/main.c \
 		src/my_write.c \
 		src/header.c \
-		src/recurse.c
+		src/recurs.c
 
 OBJS	=	${SRCS:.c=.o}
 
