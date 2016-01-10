@@ -1,11 +1,11 @@
 /*
-** options.c for option functions in /home/troncy_l/prog/Rush1/step_1/my_unarchive
+** options.c for option function
 ** 
 ** Made by 
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 23:52:49 2016 
-** Last update Sun Jan 10 09:37:12 2016 marc brout
+** Last update Sun Jan 10 09:41:45 2016 marc brout
 */
 
 #include "main.h"
