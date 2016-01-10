@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:13:56 2016 
-** Last update Sat Jan  9 23:05:37 2016 
+** Last update Sun Jan 10 00:17:44 2016 
 */
 
 #include "main.h"
@@ -16,7 +16,6 @@ int		my_untar(int fd)
   int		len;
   char		*tmp;
   int		fa;
-  char		c;
 
   while ((len = read(fd, &header, 512)) != 0)
     {
@@ -58,7 +57,6 @@ int		my_untar(int fd)
 	      printf("PADDED:%d\n", len);
 	    }
 	  }
-      read(0, &c, 1);
     }
   return (0);
 }

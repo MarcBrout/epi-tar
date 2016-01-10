@@ -1,29 +1,30 @@
 /*
-** main.h for main header file in /home/troncy_l/prog/PSU_2015_minishell1/include
+** main.h for main header
 ** 
 ** Made by 
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sun Jan 10 00:15:29 2016 
+** Last update Sun Jan 10 04:47:41 2016 
 */
 
 #ifndef MAIN_H_
 # define MAIN_H_
+# define _BSD_SOURCE
 
 # include <stdlib.h>
-# include <string.h>
 # include <stdio.h>
-# include <stdarg.h>
+# include <string.h>
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <sys/sendfile.h>
-# include <math.h>
 # include <fcntl.h>
-
-int			my_untar(int fd);
-void			disp_tar(int fd);
+# include <pwd.h>
+# include <grp.h>
+# include <ctype.h>
+# define NO_ARGS ("No parameter\n")
+# define MISSING_F ("missing -f option\n")
+# define MISSING_ARCHIVE ("missing archive\n")
 
 typedef struct		s_header
 {
@@ -47,4 +48,7 @@ typedef struct		s_header
   char			end[12];
 }			t_header;
 
+void			disp_parser(char*);
+int			check_conflict(int args[], char file[]);
+int			my_parser(int, char**, int args[], char file[]);
 #endif /* !MAIN_H_ */
