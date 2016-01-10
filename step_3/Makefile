@@ -5,7 +5,7 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Sun Jan 10 01:29:57 2016 
-## Last update Sun Jan 10 06:50:45 2016 
+## Last update Sun Jan 10 08:23:22 2016 
 ##
 
 SRCS	=	src/main.c \
@@ -13,6 +13,7 @@ SRCS	=	src/main.c \
 		src/launch_my_archive.c \
 		src/my_write.c \
 		src/ope.c \
+		src/my_start.c \
 		src/options.c \
 		src/recurs.c \
 		src/args.c \

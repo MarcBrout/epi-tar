@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sun Jan 10 01:42:48 2016 
-** Last update Sun Jan 10 07:43:13 2016 
+** Last update Sun Jan 10 08:06:25 2016 
 */
 
 #include "main.h"
@@ -36,14 +36,16 @@ int		check_conflict(int args[], char file[])
 }
 
 int		my_parser(int argc,
-			   char **argv,
-			   int args[],
-			   char file[])
+			  char **argv,
+			  int args[],
+			  int *index)
 {
   int		c;
   int		i;
   char		flags[7];
+  char		file[100];
 
+  file[0] = '\0';
   sprintf(flags, "xcvftp");
   while ((c = getopt(argc, argv, "xcvf:tp")) != -1)
     {
@@ -54,13 +56,12 @@ int		my_parser(int argc,
 	    strcpy(file, optarg);
 	  else
 	    file[0] = '\0';
+	  *index = optind - 1;
 	}
       while (i < 6)
 	{
 	  if (c == flags[i])
-	    {
-	      args[i] = 1;
-	    }
+	    args[i] = 1;
 	  i++;
 	}
     }

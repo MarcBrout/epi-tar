@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sun Jan 10 07:41:33 2016 
+** Last update Sun Jan 10 08:21:46 2016 
 */
 
 #ifndef MAIN_H_
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include <getopt.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -57,6 +58,8 @@ typedef struct		s_header
 int			my_parser(int,
 				  char**,
 				  int args[],
-				  char file[]);
+				  int *index);
 void			disp_err(char*);
+int			my_start(int argc[], char**);
+
 #endif /* !MAIN_H_ */
