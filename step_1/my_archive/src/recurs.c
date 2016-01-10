@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 03:01:35 2016 marc brout
-** Last update Sun Jan 10 04:56:29 2016 marc brout
+** Last update Sun Jan 10 07:40:28 2016 marc brout
 */
 
 #include "main.h"
@@ -50,6 +50,8 @@ char		folder_list(t_arg *arg, t_file *par)
 	if (concate_strs(arg, file, par))
 	  return (1);
     }
+  if (closedir(fold) < 0)
+    return (1);
   return (0);
 }
 
