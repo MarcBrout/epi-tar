@@ -5,22 +5,26 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-<<<<<<< HEAD
-** Last update Sun Jan 10 06:39:07 2016 
-=======
-** Last update Sun Jan 10 06:38:14 2016 marc brout
->>>>>>> 78371f7a010badb170af3d3c6c1250e1e47e63a6
+** Last update Sun Jan 10 13:05:04 2016 marc brout
 */
 
 #ifndef MAIN_H_
 # define MAIN_H_
 # define _DEFAULT_SOURCE
+# define MISSING_ARCHIVE ("missing archive file\n")
+# define MISSING_F ("missing -f option\n")
+# define NO_CORRECT ("No correct parameter found\n")
+# define NO_ARGS ("Usage : my_tar \"-cxvftp\" [ARCHIVE] [FILE1] ... [FILEN] \n")
+# define CONFLICT_XC ("Cannot use -x -c at the same time\n")
+# define NEED_X_OR_C ("missing -c or -x option\n")
+# define NO_RIGHTS ("missing ritghs to write\n")
 
 # include <dirent.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+# include <getopt.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -50,5 +54,13 @@ typedef struct		s_header
 }			t_header;
 
 # include "my_archive.h"
+# include "my_unarchive.h"
+
+int			my_parser(int,
+				  char**,
+				  int args[],
+				  int *index);
+void			disp_err(char*);
+int			my_start(int argc[], char**);
 
 #endif /* !MAIN_H_ */

@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sun Jan 10 10:26:44 2016 
+** Last update Sun Jan 10 13:05:04 2016 marc brout
 */
 
 #ifndef MAIN_H_
@@ -14,7 +14,7 @@
 # define MISSING_ARCHIVE ("missing archive file\n")
 # define MISSING_F ("missing -f option\n")
 # define NO_CORRECT ("No correct parameter found\n")
-# define NO_ARGS ("No parameter found\n")
+# define NO_ARGS ("Usage : my_tar \"-cxvftp\" [ARCHIVE] [FILE1] ... [FILEN] \n")
 # define CONFLICT_XC ("Cannot use -x -c at the same time\n")
 # define NEED_X_OR_C ("missing -c or -x option\n")
 # define NO_RIGHTS ("missing ritghs to write\n")

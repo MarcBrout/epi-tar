@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:17:18 2016 marc brout
-** Last update Sun Jan 10 07:13:17 2016 marc brout
+** Last update Sun Jan 10 11:50:44 2016 marc brout
 */
 
 #ifndef MY_ARCHIVE_H_
@@ -23,17 +23,19 @@ typedef struct		s_arg
 {
   t_file		*files;
   char			zero[512];
+  int		        *opt;
   int			pad;
 }			t_arg;
 
 void free_list(t_file *);
 void calc_chksum(t_header *);
 void my_revstr(char *);
+char construct_list(t_arg *, char *);
 char concate_strs(t_arg *, struct dirent *, t_file *);
-char folder_list(t_arg *, t_file *);
+char folder_list(t_arg *, t_file *, char *);
 char set_padres(t_file *);
 char header_start(t_file *, struct stat *);
-char launch_my_archive(char **);
+char launch_my_archive(char **, int *);
 char add_file_to_list(t_arg *, char *, char *);
 char create_all_headers(t_arg *);
 char create_header(t_file *);

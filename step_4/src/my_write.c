@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sun Jan 10 06:35:34 2016 marc brout
+** Last update Sun Jan 10 10:07:57 2016 marc brout
 */
 
 #include "main.h"
@@ -23,6 +23,13 @@ char		pad_archive(t_arg *arg, int fd)
   return (0);
 }
 
+char		my_closefd(int fd, int fd2)
+{
+  close(fd);
+  close(fd2);
+  return (1);
+}
+
 char		archive_files(t_arg *arg, char *archive)
 {
   int		src;
@@ -30,7 +37,7 @@ char		archive_files(t_arg *arg, char *archive)
   t_file	*tmp;
 
   if ((dest = open(archive, O_WRONLY | O_CREAT,
-		   S_IRWXU | S_IRGRP | S_IROTH)) < 0)
+		   S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) < 0)
     return (1);
   arg->pad = 1;
   memset(arg->zero, 0, 512);
@@ -39,15 +46,15 @@ char		archive_files(t_arg *arg, char *archive)
     if ((src = open(tmp->path, O_RDONLY)) != -1)
       {
 	if (write_tar(arg, &tmp->header, src, dest) < 0)
-	  {
-	    close(src);
-	    close(dest);
-	    return (1);
-	  }
+	  return (my_closefd(src, dest));
 	close(src);
       }
   if (pad_archive(arg, dest))
     return (1);
+  dest = open(archive, O_RDONLY);
+  if (arg->opt[2])
+    disp_tar(dest);
+  close(dest);
   return (0);
 }
 

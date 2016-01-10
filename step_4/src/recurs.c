@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 03:01:35 2016 marc brout
-** Last update Sun Jan 10 07:40:28 2016 marc brout
+** Last update Sun Jan 10 12:59:21 2016 marc brout
 */
 
 #include "main.h"
@@ -16,8 +16,12 @@ char		concate_strs(t_arg *arg, struct dirent *file, t_file *par)
   char		*str2;
   int		size;
 
-  if ((size = strlen(par->path) + strlen(file->d_name) + 2) > 100 ||
-      (str = malloc(size + 1)) == NULL)
+  if ((size = strlen(par->path) + strlen(file->d_name) + 2) > 100)
+    {
+      fprintf(stderr, "Arborescence trop longue.\n");
+      return (1);
+    }
+  if ((str = malloc(size + 1)) == NULL)
     return (1);
   str[size] = 0;
   if (snprintf(str, size, "%s%c%s", par->path, '/', file->d_name) < 0)
@@ -34,7 +38,7 @@ char		concate_strs(t_arg *arg, struct dirent *file, t_file *par)
   return (0);
 }
 
-char		folder_list(t_arg *arg, t_file *par)
+char		folder_list(t_arg *arg, t_file *par, char *str)
 {
   DIR		*fold;
   struct dirent *file;
@@ -46,12 +50,12 @@ char		folder_list(t_arg *arg, t_file *par)
   par->archpath = strcat(par->archpath, "/");
   while ((file = readdir(fold)) != NULL)
     {
-      if (strcmp(file->d_name, ".") && strcmp(file->d_name, ".."))
+      if (strcmp(file->d_name, ".") && strcmp(file->d_name, "..")
+	  && strcmp(file->d_name, str))
 	if (concate_strs(arg, file, par))
 	  return (1);
     }
-  if (closedir(fold) < 0)
-    return (1);
+  closedir(fold);
   return (0);
 }
 

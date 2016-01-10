@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Sun Jan 10 06:41:42 2016 marc brout
-** Last update Sun Jan 10 07:14:52 2016 marc brout
+** Last update Sun Jan 10 11:49:48 2016 marc brout
 */
 
 #include "main.h"
@@ -46,7 +46,7 @@ char		add_file_to_list(t_arg *arg, char *file, char *archfile)
   return (0);
 }
 
-char		construct_list(t_arg *arg)
+char		construct_list(t_arg *arg, char *str)
 {
   t_file	*tmp;
   struct stat	stats;
@@ -57,13 +57,13 @@ char		construct_list(t_arg *arg)
       if ((lstat(tmp->path, &stats)) < 0)
 	return (1);
       if (S_ISDIR(stats.st_mode))
-	if (folder_list(arg, tmp))
+	if (folder_list(arg, tmp, str))
 	  return (1);
     }
   return (0);
 }
 
-char		launch_my_archive(char **av)
+char		launch_my_archive(char **av, int *opt)
 {
   t_arg		targ;
   t_file	file;
@@ -72,15 +72,19 @@ char		launch_my_archive(char **av)
   file.path = "root";
   file.next = NULL;
   targ.files = &file;
-  i = 1;
-  while (av[++i])
+  targ.opt = opt;
+  i = 0;
+  while (av[++i] != NULL)
     if (!access(av[i], F_OK) && !access(av[i], R_OK))
-      if (add_file_to_list(&targ, av[i], av[i]))
-	return (1);
-  if (file.next == NULL)
-    return (1);
-  if (set_padres(targ.files) || construct_list(&targ) ||
-      create_all_headers(&targ) || archive_files(&targ, av[1]))
+      {
+	if (add_file_to_list(&targ, av[i], av[i]))
+	  return (1);
+      }
+    else
+	fprintf(stderr, "Fichier inexistant : %s\n", av[i]);
+  if (file.next == NULL || set_padres(targ.files) ||
+      construct_list(&targ, av[0]) || create_all_headers(&targ)
+      || archive_files(&targ, av[0]))
     return (1);
   free_list(targ.files);
   return (0);
