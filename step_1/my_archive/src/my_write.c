@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Sat Jan  9 00:27:31 2016 
-** Last update Sun Jan 10 05:21:05 2016 marc brout
+** Last update Sun Jan 10 06:35:07 2016 marc brout
 */
 
 #include "main.h"
@@ -30,25 +30,24 @@ char		archive_files(t_arg *arg, char *archive)
   t_file	*tmp;
 
   if ((dest = open(archive, O_WRONLY | O_CREAT,
-		   S_IRWXU | S_IRGRP | S_IROTH)) > -1)
-    {
-      arg->pad = 1;
-      memset(arg->zero, 0, 512);
-      tmp = arg->files;
-      while ((tmp = tmp->next) != NULL)
-	if ((src = open(tmp->path, O_RDONLY)) != -1)
+		   S_IRWXU | S_IRGRP | S_IROTH)) < 0)
+    return (1);
+  arg->pad = 1;
+  memset(arg->zero, 0, 512);
+  tmp = arg->files;
+  while ((tmp = tmp->next) != NULL)
+    if ((src = open(tmp->path, O_RDONLY)) != -1)
+      {
+	if (write_tar(arg, &tmp->header, src, dest) < 0)
 	  {
-	    if (write_tar(arg, &tmp->header, src, dest) < 0)
-	      {
-		close(src);
-		close(dest);
-		return (1);
-	      }
 	    close(src);
+	    close(dest);
+	    return (1);
 	  }
-      if (pad_archive(arg, dest))
-	return (1);
-    }
+	    close(src);
+      }
+  if (pad_archive(arg, dest))
+    return (1);
   return (0);
 }
 
