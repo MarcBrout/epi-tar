@@ -5,58 +5,62 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Fri Jan  8 21:13:56 2016 
-** Last update Sun Jan 10 00:17:44 2016 
+** Last update Sun Jan 10 10:30:25 2016 
 */
 
 #include "main.h"
 
-int		my_untar(int fd)
+int		create_file(t_header header, int fd)
+{
+  int		fa;
+  char		*tmp;
+  int		len;
+
+  if (header.type[0] < 0 || header.type[0] > 7)
+    fa = creat(header.name, strtol(header.mode, NULL, 8));
+  if (fa == -1)
+    {
+      disp_err(NO_RIGHTS);
+      return (-1);
+    }
+  tmp = malloc(sizeof(char) * (int)strtol(header.size, NULL, 8));
+  if (tmp == NULL)
+    return (-1);
+  len = read(fd, tmp, (int)strtol(header.size, NULL, 8));
+  if (header.type[0] < 0 || header.type[0] > 7)
+    write(fa, tmp, len);
+  free(tmp);
+  if (header.type[0] < 0 || header.type[0] > 7)
+    close(fa);
+  if ((len = (int)strtol(header.size, NULL, 8)) != 0)
+    len = read(fd, &header, 512 - (int)strtol(header.size, NULL, 8) % 512);
+  return (0);
+}
+
+int		my_untar(int fd, int args[])
 {
   t_header	header;
   int		len;
-  char		*tmp;
-  int		fa;
 
   while ((len = read(fd, &header, 512)) != 0)
     {
-      /*if (header.name == NULL || header.name[0] == '\0')
-	return (0);*/
       if (len != 512 && (header.name == NULL || header.name[0] == '\0'))
 	return (0);
-      printf("Name:%s\n", header.name);
-      printf("TYPE:%c\n", header.type[0]);
-      printf("Size:%d\n", (int)strtol(header.size, NULL, 8));
+      if (args[2] == 1)
+	printf("Name:%s\n", header.name);
       if (header.type[0] == '5')
 	{
 	  if (mkdir(header.name, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
-	    printf("ERRRROOOOOOOOR\n");
-	  printf("MKDIR HERE\n");
+	    {
+	      disp_err(NO_RIGHTS);
+	      return (-1);
+	    }
 	}
       else
 	{
-	  if (header.type[0] < 0 || header.type[0] > 7)
-	    fa = creat(header.name, strtol(header.mode, NULL, 8));
-	  if (fa == -1)
-	    {
-	      printf("Failed to Create file\n");
-	      return (-1);
-	    }
-	  tmp = malloc(sizeof(char) * (int)strtol(header.size, NULL, 8));
-	  if (tmp == NULL)
-	    printf("FFFFFF\n");
-	  len = read(fd, tmp, (int)strtol(header.size, NULL, 8));
-	  if (header.type[0] < 0 || header.type[0] > 7)
-	    write(fa, tmp, len);
-	  printf("READED:%d\n", len);
-	  free(tmp);
-	  if (header.type[0] < 0 || header.type[0] > 7)
-	    close(fa);
-	  if ((len = (int)strtol(header.size, NULL, 8)) != 0)
-	    {
-	      len = read(fd, &header, 512 - (int)strtol(header.size, NULL, 8) % 512);
-	      printf("PADDED:%d\n", len);
-	    }
-	  }
+	  if (create_file(header, fd) != 0)
+	    return (-1);
+	}
     }
   return (0);
 }

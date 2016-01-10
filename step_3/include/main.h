@@ -5,7 +5,7 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sun Jan 10 08:21:46 2016 
+** Last update Sun Jan 10 10:26:44 2016 
 */
 
 #ifndef MAIN_H_
@@ -17,6 +17,7 @@
 # define NO_ARGS ("No parameter found\n")
 # define CONFLICT_XC ("Cannot use -x -c at the same time\n")
 # define NEED_X_OR_C ("missing -c or -x option\n")
+# define NO_RIGHTS ("missing ritghs to write\n")
 
 # include <dirent.h>
 # include <stdlib.h>
