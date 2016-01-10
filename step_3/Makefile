@@ -5,10 +5,16 @@
 ## Login   <troncy_l@epitech.net>
 ## 
 ## Started on  Sun Jan 10 01:29:57 2016 
-## Last update Sun Jan 10 01:29:59 2016 
+## Last update Sun Jan 10 06:50:45 2016 
 ##
 
 SRCS	=	src/main.c \
+		src/header.c \
+		src/launch_my_archive.c \
+		src/my_write.c \
+		src/ope.c \
+		src/options.c \
+		src/recurs.c \
 		src/args.c \
 
 OBJS	=	${SRCS:.c=.o}

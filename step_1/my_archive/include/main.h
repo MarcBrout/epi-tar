@@ -5,7 +5,11 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
+<<<<<<< HEAD
 ** Last update Sun Jan 10 06:39:07 2016 
+=======
+** Last update Sun Jan 10 06:38:14 2016 marc brout
+>>>>>>> 78371f7a010badb170af3d3c6c1250e1e47e63a6
 */
 
 #ifndef MAIN_H_

@@ -5,13 +5,20 @@
 ** Login   <troncy_l@epitech.net>
 ** 
 ** Started on  Thu Jan  7 20:56:14 2016 
-** Last update Sun Jan 10 04:47:41 2016 
+** Last update Sun Jan 10 07:41:33 2016 
 */
 
 #ifndef MAIN_H_
 # define MAIN_H_
-# define _BSD_SOURCE
+# define _DEFAULT_SOURCE
+# define MISSING_ARCHIVE ("missing archive file\n")
+# define MISSING_F ("missing -f option\n")
+# define NO_CORRECT ("No correct parameter found\n")
+# define NO_ARGS ("No parameter found\n")
+# define CONFLICT_XC ("Cannot use -x -c at the same time\n")
+# define NEED_X_OR_C ("missing -c or -x option\n")
 
+# include <dirent.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
@@ -21,10 +28,6 @@
 # include <fcntl.h>
 # include <pwd.h>
 # include <grp.h>
-# include <ctype.h>
-# define NO_ARGS ("No parameter\n")
-# define MISSING_F ("missing -f option\n")
-# define MISSING_ARCHIVE ("missing archive\n")
 
 typedef struct		s_header
 {
@@ -48,7 +51,12 @@ typedef struct		s_header
   char			end[12];
 }			t_header;
 
-void			disp_parser(char*);
-int			check_conflict(int args[], char file[]);
-int			my_parser(int, char**, int args[], char file[]);
+# include "my_archive.h"
+# include "my_unarchive.h"
+
+int			my_parser(int,
+				  char**,
+				  int args[],
+				  char file[]);
+void			disp_err(char*);
 #endif /* !MAIN_H_ */
